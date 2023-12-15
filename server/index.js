@@ -23,7 +23,6 @@ app.use(express.static('./public'))
 // })
 
 
-
 //  ------------------------------------------------------------ DB API ROUTES
 
 // get all history
@@ -156,3 +155,6 @@ app.listen(apiPort, console.log(`Server started on PORT ${apiPort}`))
 
 
 //  ------------------------------------------------------------ UTIL FUNCTIONS
+
+
+export default pool
