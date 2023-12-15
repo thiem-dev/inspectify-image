@@ -141,13 +141,13 @@ app.delete('/api/history/:id', async (req, res) => {
 
 
 //  ------------------------------------------------------------ CATCH ALL ROUTE
-app.use('/', (req, res, next) => {
-    next({message: "The path you are looking for does not exist", status: 404})
-})
+// app.use('/', (req, res, next) => {
+//     next({message: "The path you are looking for does not exist", status: 404})
+// })
 
-app.use((err, req, res, next) => {
-    res.status(err.status).json({ error: err })
-})
+// app.use((err, req, res, next) => {
+//     res.status(err.status).json({ error: err })
+// })
 
 
 //  ------------------------------------------------------------ LISTENER METHOD
