@@ -5,7 +5,7 @@ CREATE TABLE history(
     id SERIAL PRIMARY KEY,
     image_url TEXT,
     caption TEXT,
-    class_categories TEXT
+    class_categories JSON
 );
 
 -- SEED DATA INSERTS
