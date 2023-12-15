@@ -21,7 +21,9 @@ app.use(express.static('./public'))
 // app.use('/', (req, res) =>{
 //     res.send(`Server is running`)
 // })
+//  ------------------------------------------------------------ LISTENER METHOD
 
+app.listen(apiPort, console.log(`Server started on PORT ${apiPort}`))
 
 
 //  ------------------------------------------------------------ DB API ROUTES
@@ -150,9 +152,7 @@ app.delete('/api/history/:id', async (req, res) => {
 // })
 
 
-//  ------------------------------------------------------------ LISTENER METHOD
 
-app.listen(apiPort, console.log(`Server started on PORT ${apiPort}`))
 
 
 //  ------------------------------------------------------------ UTIL FUNCTIONS
