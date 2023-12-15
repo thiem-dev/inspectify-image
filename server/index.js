@@ -99,8 +99,8 @@ app.post('/api/history', async (req, res) => {
     }
 });
 
-//update person
-app.put('/api/person/:id', async (req, res) => {
+//update history
+app.put('/api/history/:id', async (req, res) => {
     const { id } = req.params;
     const { image_url, caption, class_categories } = req.body;
     try{
