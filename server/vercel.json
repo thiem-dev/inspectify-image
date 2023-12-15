@@ -16,19 +16,11 @@
     "routes": [
       {
         "src": "/api/(.*)",
-        "dest": "/api/index.js"
+        "dest": "index.js"
       },
-      {
-        "src": "^/static/(.*)",
-        "dest": "/client/static/$1"
-      },
-      {
-         "src": "/(.*)\\.png",
-         "dest": "/client/$1.png"
-       },
       {
         "src": "/(.*)",
-        "dest": "/client/index.html"
+        "dest": "/server/index.html"
       }
     ]
   }
