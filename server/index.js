@@ -155,6 +155,3 @@ app.listen(apiPort, console.log(`Server started on PORT ${apiPort}`))
 
 
 //  ------------------------------------------------------------ UTIL FUNCTIONS
-
-
-export default pool
