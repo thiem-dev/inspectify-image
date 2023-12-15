@@ -31,7 +31,7 @@ function App() {
 
   return (
     // title bar
-    <div className="main-container container">
+    <div id="main-body" className="container flex flex-row w-full h-full  relative">
       <MainContent/>
       <HistoryBar history={history}/>
 
