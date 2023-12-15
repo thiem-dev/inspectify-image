@@ -3,10 +3,11 @@ import './App.css'
 import sampleData from './assets/sampleData.json'
 import MainContent from './components/MainContent'
 import HistoryBar from './components/HistoryBar'
+import Loading from './components/Loading'
 
 function App() {
   const [history, setHistory] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
 
@@ -20,14 +21,14 @@ function App() {
     // getHistory();
 
     setHistory(sampleData)
+    setLoading(false)
   }, [])
 
 
-  if(isLoading){
-    <h1>Loading data</h1>
+  if(loading){
+    return (<Loading/>)
   }
 
-  // TODO historybar
   return (
     // title bar
     <div className="main-container container">
@@ -36,8 +37,6 @@ function App() {
 
     </div>
     
-
-
   )
 }
 
