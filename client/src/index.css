@@ -17,6 +17,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'DM Sans', sans-serif;
+  transition: .5s all ease;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
