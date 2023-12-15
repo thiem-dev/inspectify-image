@@ -1,7 +1,7 @@
 
 
 ## Deployment Resources
-- Client: Vercel
+- Client: Verce  l
 - DB: NeonDB
 - Server/API service: Render
 

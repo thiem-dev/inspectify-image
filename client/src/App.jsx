@@ -1,41 +1,39 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
+import sampleData from './assets/sampleData.json'
+import MainContent from './components/MainContent'
+import HistoryBar from './components/HistoryBar'
 
 function App() {
+  const [history, setHistory] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
+  useEffect(() => {
+
+    // const getHistory = async () => {
+    //   const res = await fetch('')
+    //   const data = await res.json()
+    //   setHistory(data)
+    //   setIsLoading(false)
+    // }
+
+    // getHistory();
+
+    setHistory(sampleData)
+  }, [])
+
+
+  if(isLoading){
+    <h1>Loading data</h1>
+  }
+
+  // TODO historybar
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline bg-blue-500">
-        Hello world!
-      </h1>
+    // title bar
+    <div className="main-container container">
+      <MainContent/>
+      <HistoryBar history={history}/>
 
-      <div className="collapse bg-base-200">
-        <input type="radio" name="my-accordion-1" /> 
-        <div className="collapse-title text-xl font-medium">
-          Click to open this one and close others
-        </div>
-        <div className="collapse-content"> 
-          <p>hello</p>
-        </div>
-      </div>
-      <div className="collapse bg-base-200">
-        <input type="radio" name="my-accordion-1" /> 
-        <div className="collapse-title text-xl font-medium">
-          Click to open this one and close others
-        </div>
-        <div className="collapse-content"> 
-          <p>hello</p>
-        </div>
-      </div>
-      <div className="collapse bg-base-200">
-        <input type="radio" name="my-accordion-1" /> 
-        <div className="collapse-title text-xl font-medium">
-          Click to open this one and close others
-        </div>
-        <div className="collapse-content"> 
-          <p>hello</p>
-        </div>
-      </div>
     </div>
     
 

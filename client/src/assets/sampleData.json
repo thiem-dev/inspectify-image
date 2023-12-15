@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "image_url": "https://cdn.shopify.com/s/files/1/0317/9853/files/inspiring-christmas-tree-ideas-102538741_large.jpg?v=1481831458",
+        "caption": "A christmas tree",
+        "class_categories": "{\"tree\": 0.9, \"jewelry\": 0.1}"
+    },
+    {
+        "id": 2,
+        "image_url": "https://hips.hearstapps.com/hmg-prod/images/happy-dog-outdoors-royalty-free-image-1652927740.jpg?crop=0.447xw:1.00xh;0.187xw,0&resize=980:*",
+        "caption": "A happy dog",
+        "class_categories": "{\"dog\": 0.8, \"cat\": 0.2}"
+    },
+    {
+        "id": 3,
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/1200px-Cat_November_2010-1a.jpg",
+        "caption": "A grumpy cat.",
+        "class_categories": "{\"mountain\": 0.7, \"sky\": 0.2, \"forest\": 0.1}"
+    }
+]
