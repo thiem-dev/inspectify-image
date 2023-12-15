@@ -1,7 +1,6 @@
 #personal
 .env
 .vscode
-vercel.json
 
 # Logs
 logs
