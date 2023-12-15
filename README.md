@@ -1,5 +1,10 @@
 
 
+## Deployment Resources
+- Client: Vercel
+- DB: NeonDB
+- Server/API service: Render
+
 
 
 ## Deployment to Vercel Configuration
