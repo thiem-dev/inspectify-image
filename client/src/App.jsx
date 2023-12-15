@@ -29,9 +29,11 @@ function App() {
     return (<Loading/>)
   }
 
+
+  //TODO styling the main layout
   return (
     // title bar
-    <div id="main-body" className="container flex flex-row w-full h-full  relative">
+    <div id="main-body" className="container flex flex-row w-full h-full relative max-h-full justify-center">
       <MainContent/>
       <HistoryBar history={history}/>
 

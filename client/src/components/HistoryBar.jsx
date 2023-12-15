@@ -9,7 +9,6 @@ const HistoryBar = ({ history }) => {
         <div className="card-ctn container historyCard" key={item.id}>
             <div className="imageHolder">
                 
-                
             </div>
         </div>
     ))
@@ -17,17 +16,18 @@ const HistoryBar = ({ history }) => {
     
 
 
-        const historyCardsTwo = history.map((item) => (
-            <div className="card w-4/12 h-4/12 bg-base-100 shadow-xl" key={item.id}>
-                <figure><img src={item.image_url} alt={item.caption} /></figure>
-                <div className="card-body">
-                <h2 className="card-title">Caption: {item.caption}</h2>
-                <div className="card-actions justify-end">
-                    
-                    <div className="badge badge-outline">${}</div> 
-                </div>
-                </div>
+    const historyCardsTwo = history.map((item) => (
+        <div className="card w-4/12 h-4/12 bg-base-100 shadow-xl" key={item.id}>
+            <figure><img src={item.image_url} alt={item.caption}/></figure>
+            <div className="card-body">
+            <h2 className="card-title">Caption: {item.caption}</h2>
+            <div className="card-actions justify-end">
+                <div className="badge badge-outline">Class 1</div> 
+                <div className="badge badge-outline">Class 2</div> 
+                <div className="badge badge-outline">Class 3</div> 
             </div>
+            </div>
+        </div>
         
         ))
             
