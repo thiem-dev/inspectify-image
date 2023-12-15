@@ -42,3 +42,8 @@
 .container{
   border: 1px solid darkkhaki;
 }
+
+.historyCard{
+  width: 200px;
+  height: auto;
+}
