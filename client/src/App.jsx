@@ -33,12 +33,18 @@ function App() {
   //TODO styling the main layout
   return (
     // title bar
-    <div id="main-body" className="container flex flex-row w-full h-full relative max-h-full justify-center">
-      <MainContent/>
-      <HistoryBar history={history}/>
-
-    </div>
-    
+    <>
+      <h1>Body</h1>
+      <div id="main-body" className="container relative w-11/12 mx-auto">
+        <div className="">
+          <h1>Title Holder</h1>
+        </div>
+        <div className="mainHolder container w-full h-full flex flex-row justify-evenly mx-auto my-10 gap-8">
+          <MainContent/>
+          <HistoryBar history={history}/>
+        </div>
+      </div>
+    </>
   )
 }
 
