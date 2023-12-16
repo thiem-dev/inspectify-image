@@ -3,7 +3,9 @@
 
 const MainContent = ({imageURL, imageRef, results, identify}) => {
 
-    const classResults = 
+    const classResults = results.map((item) => (
+        //TODO results component
+    ))
 
     return (
         <div className="maincontent-ctn container mx-auto my-1 h-auto w-7/12 flex flex-col justify-evenly">
