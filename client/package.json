@@ -11,7 +11,13 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@tensorflow-models/mobilenet": "^2.1.1",
+    "@tensorflow/tfjs": "^4.15.0",
+    "@tensorflow/tfjs-backend-cpu": "^4.15.0",
+    "@tensorflow/tfjs-backend-webgl": "^4.15.0",
+    "@tensorflow/tfjs-converter": "^4.15.0",
+    "@tensorflow/tfjs-core": "^4.15.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
