@@ -8,6 +8,13 @@ import Loading from './components/Loading'
 function App() {
   const [history, setHistory] = useState([])
   const [loading, setLoading] = useState(true)
+  const [model, setModel] = useState(null)
+  const [results, setResults] = useState([])
+  const [imageURL, setImageURL] = useState(null)
+
+  const imageRef = useRef()
+  const textInputRef = useRef()
+  const fileInputRef = useRef()
 
   useEffect(() => {
 
@@ -21,6 +28,7 @@ function App() {
     // getHistory();
 
     setHistory(sampleData)
+    setImageURL('https://cdn.shopify.com/s/files/1/0317/9853/files/inspiring-christmas-tree-ideas-102538741_large.jpg?v=1481831458')
     setLoading(false)
   }, [])
 
@@ -36,11 +44,11 @@ function App() {
     <>
       <h1>Body</h1>
       <div id="main-body" className="container relative w-11/12 mx-auto">
-        <div className="">
+        <div className="w-full">
           <h1>Title Holder</h1>
         </div>
         <div className="mainHolder container w-full h-full flex flex-row justify-evenly mx-auto my-10 gap-8">
-          <MainContent/>
+          <MainContent imageURL={imageURL} imageRef={imageRef}/>
           <HistoryBar history={history}/>
         </div>
       </div>
