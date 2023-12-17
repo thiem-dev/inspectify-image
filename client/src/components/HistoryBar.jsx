@@ -6,24 +6,8 @@ const HistoryBar = ({ history }) => {
     console.log(history)
 
     const historyCards = history.map((item) => (
-        <div key={item.id} className="card w-96 bg-base-100 shadow-xl image-full">
-            <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-            {/* <div className="card-body">
-                <h2 className="card-title">Shoes!</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
-                <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
-                </div>
-            </div> */}
-        </div>
-    ))
-
-    
-
-
-    const historyCardsTwo = history.map((item) => (
-        <div className="card group relative col-span-4 max-h-[900px] bg-base-100 shadow-xl cursor-pointer overflow-hidden" key={item.id}>
-            <div className="img-ctn h-[250px] w-[250px] overflow-hidden">
+        <div className="card group relative col-span-4 max-h-[900px] bg-base-100 shadow-xl cursor-pointer overflow-hidden" key={`hcard${item.id}`}>
+            <div className="img-ctn h-[300px] w-[300px] overflow-hidden">
                 <img src={item.image_url} alt={item.caption}
                 className='object-cover group-hover:scale-110'/>
             </div>
@@ -42,13 +26,13 @@ const HistoryBar = ({ history }) => {
 
 
     return (
-        <div className="historybar-ctn container ">
+        <>
             <h1>HistoryBar Content</h1>
-            <div className="historyCardHolder grid grid-flow-row grid-cols-1 sm:grid-cols-1 md:grid-cols-8 gap-8 my-16 mx-10 justify-evenly content-center">
-                {/* {historyCards} */}
-                {historyCardsTwo}
+            <div className="historyCardHolder grid grid-flow-row grid-cols-1 sm:grid-cols-4 md:grid-cols-8 gap-5 my-8 mx-8 justify-evenly content-center">
+                {historyCards}
             </div>
-        </div>
+        </>
+        
 
     )
 }

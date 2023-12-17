@@ -36,5 +36,15 @@
             "sky": 0.2,
             "forest": 0.1
         }
+    },
+    {
+        "id": 5,
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/1200px-Cat_November_2010-1a.jpg",
+        "caption": "A grumpy cat.",
+        "class_categories": {
+            "mountain": 0.7,
+            "sky": 0.2,
+            "forest": 0.1
+        }
     }
 ]

@@ -68,18 +68,17 @@ function App() {
 
   //TODO styling the main layout
   return (
-    // title bar
     <>
-      <h1>Body</h1>
-      <div id="main-body" className="container relative w-11/12 mx-auto">
-        <div className="w-full">
-          <h1>Title Holder</h1>
-        </div>
-        <div className="mainHolder container w-full h-full flex flex-row justify-evenly mx-auto my-10 gap-8">
-          <MainContent imageURL={imageURL} imageRef={imageRef} results={results} identify={identify} textInputRef={textInputRef}/>
-          <HistoryBar history={history}/>
-        </div>
-      </div>
+      <div id="main-body" className="container">
+        <div className="mainHolder container w-full h-full flex flex-row justify-evenly my-10 gap-4 overflow-hidden">
+          <div className="w-7/12 h-5/6">
+            <MainContent imageURL={imageURL} imageRef={imageRef} results={results} identify={identify} textInputRef={textInputRef}/>
+          </div>
+          <div className="historybar-ctn container w-5/12 h-5/6 overflow-y-scroll">
+            <HistoryBar history={history}/>
+          </div>
+        </div>{/* <! END MAIN HOLDER--> */}
+       </div>{/* <! END MAIN BODY--> */}
     </>
   )
 }
