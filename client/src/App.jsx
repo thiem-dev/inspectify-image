@@ -46,7 +46,7 @@ function App() {
 
   const identify = async () => {
     textInputRef.current.value=''
-    const resulsts = await model.classify(imageRef.current)
+    const results = await model.classify(imageRef.current)
     setResults(results)
   }
 
@@ -76,7 +76,7 @@ function App() {
           <h1>Title Holder</h1>
         </div>
         <div className="mainHolder container w-full h-full flex flex-row justify-evenly mx-auto my-10 gap-8">
-          <MainContent imageURL={imageURL} imageRef={imageRef} results={results} identify={identify}/>
+          <MainContent imageURL={imageURL} imageRef={imageRef} results={results} identify={identify} textInputRef={textInputRef}/>
           <HistoryBar history={history}/>
         </div>
       </div>
