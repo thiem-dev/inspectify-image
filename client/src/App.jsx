@@ -30,10 +30,20 @@ function App() {
     // getHistory();
 
     setHistory(sampleData)
-    setImageURL('https://cdn.shopify.com/s/files/1/0317/9853/files/inspiring-christmas-tree-ideas-102538741_large.jpg?v=1481831458')
+  }, [])
+
+  useEffect(() => {
+    if(imageURL){
+      setHistory([imageURL, ...history])
+    }
+  }, [imageURL])
+
+  useEffect(() => {
     loadModel()
     setLoading(false)
   }, [])
+
+
 
   const loadModel = async () => {
     try{
@@ -45,9 +55,10 @@ function App() {
   }
 
   const identify = async () => {
-    textInputRef.current.value=''
+    // textInputRef.current.value=''
     const results = await model.classify(imageRef.current)
     setResults(results)
+    console.log(results)
   }
 
   const uploadImage = (e) => {
@@ -60,6 +71,13 @@ function App() {
     }
   }
 
+  const handleOnChange = (e) => {
+    setImageURL(e.target.value)
+    // setResults([])
+  }
+
+
+  
 
   if(loading){
     return (<Loading/>)
@@ -72,7 +90,7 @@ function App() {
       <div id="main-body" className="container">
         <div className="mainHolder container w-full h-full flex flex-row justify-evenly my-10 gap-4 overflow-hidden">
           <div className="w-7/12 h-5/6">
-            <MainContent imageURL={imageURL} imageRef={imageRef} results={results} identify={identify} textInputRef={textInputRef}/>
+            <MainContent imageURL={imageURL} imageRef={imageRef} results={results} identify={identify} textInputRef={textInputRef} handleOnChange={handleOnChange}/>
           </div>
           <div className="historybar-ctn container w-5/12 h-5/6 overflow-y-scroll">
             <HistoryBar history={history}/>

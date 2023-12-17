@@ -3,7 +3,7 @@
 
 import ClassResults from "./ClassResults"
 
-const MainContent = ({imageURL, imageRef, results, identify, textInputRef}) => {
+const MainContent = ({imageURL, imageRef, results, identify, textInputRef, uploadImage, handleOnChange}) => {
 
 
     // console.log('results',results)
@@ -14,11 +14,16 @@ const MainContent = ({imageURL, imageRef, results, identify, textInputRef}) => {
     }
 
 
+
+
     return (
-        <div className="maincontent-ctn container mx-auto my-1 px-8 h-full w-full flex flex-col justify-evenly">
+        <>
             <h1>Main Content</h1>
+            <div className="maincontent-ctn container mx-auto my-1 px-8 h-full w-full flex flex-col justify-evenly">
+            
             <div className="inputHolder flex flex-row gap-8">
-                <input type="text" placeholder='Paste imge URL' ref={textInputRef} className="w-9/12" />
+                <input type="text" placeholder='Paste imge URL' ref={textInputRef} onChange={handleOnChange}
+                    className="w-9/12" />
                 {imageURL && <button className='button bg-stone-700' onClick={identify}>Identify Image</button>}
             </div>
             
@@ -30,6 +35,8 @@ const MainContent = ({imageURL, imageRef, results, identify, textInputRef}) => {
             </div>
             
         </div>
+        </>
+       
 
         
 

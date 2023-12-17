@@ -3,10 +3,10 @@ import { useState } from "react";
 const HistoryBar = ({ history }) => {
     const [classBadges, setClassBadges] = useState([]);
 
-    console.log(history)
-
+    // console.log(history)
+    // key={`hcard${item.id}`}
     const historyCards = history.map((item) => (
-        <div className="card group relative col-span-4 max-h-[900px] bg-base-100 shadow-xl cursor-pointer overflow-hidden" key={`hcard${item.id}`}>
+        <div className="card group relative col-span-4 max-h-[900px] bg-base-100 shadow-xl cursor-pointer overflow-hidden">
             <div className="img-ctn h-[300px] w-[300px] overflow-hidden">
                 <img src={item.image_url} alt={item.caption}
                 className='object-cover group-hover:scale-110'/>
