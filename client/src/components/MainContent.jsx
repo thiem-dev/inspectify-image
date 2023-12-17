@@ -3,14 +3,19 @@
 
 import ClassResults from "./ClassResults"
 
-const MainContent = ({imageURL, imageRef, results, identify, textInputRef, uploadImage, handleOnChange}) => {
+const MainContent = ({imageURL, 
+    imageRef, results, identify, 
+    textInputRef, uploadImage, handleOnChange,
+    handleImgLoad
+    }) => {
 
 
     // console.log('results',results)
     let mainImg = <div className="skeleton w-32 h-32">Hello</div>
 
     if(imageURL){
-        mainImg = <img src={imageURL} alt="Upload Preview" crossOrigin="anonymous" ref={imageRef} className="" />
+        mainImg = <img src={imageURL} alt="Upload Preview" crossOrigin="anonymous"
+        ref={imageRef} className="" onLoad={handleImgLoad}/>
     }
 
 
@@ -24,7 +29,7 @@ const MainContent = ({imageURL, imageRef, results, identify, textInputRef, uploa
             <div className="inputHolder flex flex-row gap-8">
                 <input type="text" placeholder='Paste imge URL' ref={textInputRef} onChange={handleOnChange}
                     className="w-9/12" />
-                {imageURL && <button className='button bg-stone-700' onClick={identify}>Identify Image</button>}
+                {imageURL && <button className='button bg-stone-700' onClick={identify} >Identify Image</button>}
             </div>
             
             <div className="resultsHolders">

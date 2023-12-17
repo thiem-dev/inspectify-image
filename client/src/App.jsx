@@ -13,6 +13,7 @@ function App() {
   const [model, setModel] = useState(null)
   const [results, setResults] = useState([])
   const [imageURL, setImageURL] = useState(null)
+  const [imageLoaded, setImageLoaded] = useState(false)
 
   const imageRef = useRef()
   const textInputRef = useRef()
@@ -33,6 +34,7 @@ function App() {
   }, [])
 
   useEffect(() => {
+    //TODO if() handle if image actually loaded
     if(imageURL){
       setHistory([imageURL, ...history])
     }
@@ -71,9 +73,21 @@ function App() {
     }
   }
 
+  const handleImgLoad = (e) => {
+    const isImgLoaded = e.target.naturalWidth > 0;
+
+    if(isImgLoaded){
+      setImageLoaded(isImgLoaded)
+    } else {
+      // set daisyui toast fail
+      console.log('image url is invalid')
+    }
+  }
+
+  // TODO rename to handleImgOnChange
   const handleOnChange = (e) => {
     setImageURL(e.target.value)
-    // setResults([])
+    setResults([])
   }
 
 
@@ -90,7 +104,11 @@ function App() {
       <div id="main-body" className="container">
         <div className="mainHolder container w-full h-full flex flex-row justify-evenly my-10 gap-4 overflow-hidden">
           <div className="w-7/12 h-5/6">
-            <MainContent imageURL={imageURL} imageRef={imageRef} results={results} identify={identify} textInputRef={textInputRef} handleOnChange={handleOnChange}/>
+            <MainContent 
+              imageURL={imageURL} imageRef={imageRef} results={results} 
+              identify={identify} textInputRef={textInputRef} handleOnChange={handleOnChange} 
+              handleImgLoad={handleImgLoad}
+            />
           </div>
           <div className="historybar-ctn container w-5/12 h-5/6 overflow-y-scroll">
             <HistoryBar history={history}/>
