@@ -1,3 +1,13 @@
+/* TODO
+- load history from DB
+- show toast on img loads
+- make toast disappear after 5s or click to clear
+- click and img ref and focus changes 
+- save img to history
+- render box around classification objects
+-
+*/
+
 import { useState, useEffect, useRef } from 'react'
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import * as tf from '@tensorflow/tfjs';
@@ -6,6 +16,7 @@ import sampleData from './assets/sampleData.json'
 import MainContent from './components/MainContent'
 import HistoryBar from './components/HistoryBar'
 import Loading from './components/Loading'
+import ToastEvent from './components/ToastEvent';
 
 function App() {
   const [history, setHistory] = useState([])
@@ -14,6 +25,8 @@ function App() {
   const [results, setResults] = useState([])
   const [imageURL, setImageURL] = useState(null)
   const [imageLoaded, setImageLoaded] = useState(false)
+  const [toastStatus, setToastStatus] = useState(true)
+  const [toastText, setToastText] = useState('default')
 
   const imageRef = useRef()
   const textInputRef = useRef()
@@ -44,8 +57,6 @@ function App() {
     loadModel()
     setLoading(false)
   }, [])
-
-
 
   const loadModel = async () => {
     try{
@@ -102,6 +113,7 @@ function App() {
   return (
     <>
       <div id="main-body" className="container">
+        <ToastEvent toastStatus={toastStatus} toastText={toastText}/>
         <div className="mainHolder container w-full h-full flex flex-row justify-evenly my-10 gap-4 overflow-hidden">
           <div className="w-7/12 h-5/6">
             <MainContent 
