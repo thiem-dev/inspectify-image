@@ -16,7 +16,7 @@ const MainContent = ({imageURL,
     if(imageURL){
         mainImg = <img src={imageURL} alt="Upload Preview" crossOrigin="anonymous"
         ref={imageRef} onLoad={handleImgLoad}
-        className="object-contain w-80 h-auto"/>
+        className="object-contain w-80 h-80"/>
     }
 
 
@@ -36,7 +36,7 @@ const MainContent = ({imageURL,
             <div className="resultsHolders">
                 <ClassResults results={results}/>
             </div>
-            <div className="Imageholder px-6 max-h-80 flex justify-center">
+            <div className="Imageholder px-6 max-h-80 flex justify-center overflow-hidden">
                 {mainImg}
             </div>
             
