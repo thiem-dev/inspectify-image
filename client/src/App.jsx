@@ -1,7 +1,7 @@
 /* TODO
 - load history from DB
 - show toast on img loads
-- make toast disappear after 5s or click to clear
+- make toast disappear after 5s w/ decreasing progress bar or click to clear
 - click and img ref and focus changes 
 - save img to history
 - render box around classification objects
