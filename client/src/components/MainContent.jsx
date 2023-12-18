@@ -11,7 +11,8 @@ const MainContent = ({imageURL,
 
 
     // console.log('results',results)
-    let mainImg = <div className="skeleton w-11/12 h-11/12">Image Container Area</div>
+    // TODO add default height and width for the skeleton
+    let mainImg = <div className="skeleton w-11/12 h-11/12">Waiting for user input</div>
 
     if(imageURL){
         mainImg = <img src={imageURL} alt="Upload Preview" crossOrigin="anonymous"
