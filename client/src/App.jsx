@@ -10,7 +10,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import * as mobilenet from "@tensorflow-models/mobilenet";
-import * as tf from '@tensorflow/tfjs';
+// import * as tf from '@tensorflow/tfjs';
 import './App.css'
 import sampleData from './assets/sampleData.json'
 import MainContent from './components/MainContent'
