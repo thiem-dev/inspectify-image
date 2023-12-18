@@ -6,7 +6,7 @@ const ToastEvent = ({toastStatus, toastText}) => {
         if (toastStatus){
             console.log('inside ToastStatus')
             return (
-                <div className="toast">
+                <div className="toast z-100">
                     <div className="alert alert-success">
                     <span>Success.</span>
                     </div>
