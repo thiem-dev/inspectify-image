@@ -1,23 +1,34 @@
 // TODO add onchange input valudation for caption
-
+import {useState} from 'react'
 import ClassResults from "./ClassResults"
 
 const MainContent = ({imageURL, 
     imageRef, results, identify, 
     urlInputRef, uploadImage, handleImgOnChange,
-    handleImgLoad, userCaptionRef
+    handleImgLoad, userCaptionRef, postImage, 
+    setUserCaption
     }) => {
+
+    const [caption, setCaption] = useState('')
+    
 
 // ------------------------------------------------ Util Function
 
     const handleCaptionChange = (e) => {
-        console.log(userCaptionRef.current.value)
+        setCaption(userCaptionRef.current.value)
     }
+
+    const submitUserPost = (e) => {
+        e.preventDefault()
+
+        console.log('submitted response', caption, results)
+        postImage(caption, results)
+    }
+
 
 
 // --------------------------------------------- Content Elements
         
-    // console.log('results',results)
     // TODO add default height and width for the skeleton
     let mainImg = <div className="skeleton w-11/12 h-11/12">Waiting for user input</div>
 
@@ -31,7 +42,10 @@ const MainContent = ({imageURL,
         <>
             <h1>Main Content</h1>
             <div className="maincontent-ctn container mx-auto my-1 px-8 h-full w-full flex flex-col justify-evenly">
-                
+            
+            <form onSubmit={submitUserPost}>
+
+            </form>
                 <div className="inputHolder flex flex-row gap-8">
                     <input type="text" placeholder='Paste imge URL' ref={urlInputRef} onChange={handleImgOnChange}
                         className="w-9/12" />
@@ -39,6 +53,8 @@ const MainContent = ({imageURL,
                 </div>
                 <div>
                     <input id='userCaption' type='text' placeholder='caption the image' ref={userCaptionRef} onChange={handleCaptionChange} />
+                    <button type='submit' onClick={submitUserPost}>Save to history</button>
+                    
                 </div>
                 
                 <div className="resultsHolders">

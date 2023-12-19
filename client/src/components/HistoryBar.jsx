@@ -12,9 +12,11 @@ const HistoryBar = ({ history, setImageURL, historyLoading }) => {
     }
 
 
-    const classText = (data) => {return data.map(([key, val],index) => (
-        <div key={`${key}-${index}`} className="text-lg p-1">{key} {`${val*100}%`}</div>
-    ))}
+    // const classText = (data) => {return data.map(([key, val],index) => (
+    //     <div key={`${key}-${index}`} className="text-lg p-1">{key} {`${val*100}%`}</div>
+    // ))}
+
+    const classText2 = (data) => {console.log('historybar class categories', data)}
 
     const historyCards = history.map((image, index) => (
         <div key={`${image}-${index}`}
@@ -28,8 +30,11 @@ const HistoryBar = ({ history, setImageURL, historyLoading }) => {
             <div className="curtain absolute inset-0 bg-transparent group-hover:bg-gray-800/80"></div>
 
             <div className="text-ctn absolute inset-0 flex flex-col text-gray-100 px-9 translate-y-[110%] overflow-hidden group-hover:translate-y-[30%]" >
-                { image.class_categories !== null
-                    ? classText(Object.entries(image.class_categories)) 
+                {/* { image.class_categories !== null
+                    ? classText2(Object.entries(image.class_categories)) 
+                    : <div>no class categories</div> } */}
+                {image.class_categories !== null 
+                    ? classText2(image)
                     : <div>no class categories</div> }
             </div>
         </div>

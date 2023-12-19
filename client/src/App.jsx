@@ -5,6 +5,7 @@
 - separate classificiation div names from the progress bar so it doesn't jump around
 - add more toast types
 - separate main content load and history content loading states
+- put toastEvent component into a wrapper function + that return an element plus useffect? 
 */
 
 import { useState, useEffect, useRef } from 'react'
@@ -23,6 +24,7 @@ function App() {
   const [historyLoading, setHistoryLoading] = useState(true)
   const [model, setModel] = useState(null)
   const [results, setResults] = useState([])
+  const [userCaption, setUserCaption] = useState('')
   const [imageURL, setImageURL] = useState(null)
   const [imageLoaded, setImageLoaded] = useState(false)
   const [imageExists, setImageExists] = useState(true)
@@ -34,11 +36,13 @@ function App() {
   const urlInputRef = useRef()
   const userCaptionRef = useRef()
 
+  const API_URL = `https://inspectify-image-server-dev.onrender.com`
+
   useEffect(() => {
 
     const getHistory = async () => {
       try {
-        const res = await fetch('https://inspectify-image-server-dev.onrender.com/api/history')
+        const res = await fetch(`${API_URL}/api/history`)
         const data = await res.json()
         setHistory(data)
         setHistoryLoading(false)
@@ -52,21 +56,22 @@ function App() {
     // setHistory(sampleData)
   }, [])
 
-  //if current history doesn't already have this url, then add it to history and post to db
-  useEffect(() => {
-    if(imageLoaded){
-      const imageUrlExists = history.some(item => { return item.image_url == imageURL })
-      imageUrlExists ? console.log('img already exists') : setHistory([imageURL, ...history])
-      setImageExists(imageUrlExists)
-      console.log('imageloaded', imageURL)
+  // if current history doesn't already have this url, then add it to history and post to db
+  // useEffect(() => {
+  //   if(imageLoaded){
+  //     const imageUrlExists = history.some(item => { return item.image_url == imageURL })
+  //     imageUrlExists ? console.log('img already exists') : setHistory([imageURL, ...history])
+  //     setImageExists(imageUrlExists)
+  //     console.log('imageloaded', imageURL)
+  //   }
 
-    }
+  //   if(imageURL){
+  //     urlInputRef.current.value = imageURL
+  //   }
 
-    if(imageURL){
-      urlInputRef.current.value = imageURL
-    }
+  // }, [imageURL])
 
-  }, [imageURL])
+
 
   useEffect(() => {
     loadModel()
@@ -74,38 +79,44 @@ function App() {
     setToastStatus('success'); setToastText('model rendered');
   }, [])
 
-  useEffect(() => {
 
-    // TODO - current
-    const postImage = () => {
-      if(!imageExists){
+    //POST image to history route
+  // useEffect(() => {
 
-        const imageObj = {
-          caption: 'default',
-          class_catgories: results,
-          image_url: imageURL
-        }
+  //   // TODO - current
+  //   const postImage = async () => {
+  //     if(!imageExists){
 
-      //   const response = await fetch(url, {
-      //     method: 'POST',
-      //     headers: {
-      //         "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(obj)
-      // });
-        // post method to history
-        //update history when post completes
-        // const imageObj = {
-            // imageref.current
-          // results
-          // }
+  //       const imageObj = {
+  //         caption: userCaptionRef,
+  //         class_catgories: results,
+  //         image_url: imageURL
+  //       }
+        
+  //       try {
+  //           const res = await fetch(`${API_URL}/api/history`, {
+  //             method: 'POST',
+  //             headers: {
+  //                 "Content-Type": "application/json",
+  //                 },
+  //                 body: JSON.stringify(imageObj)
+  //           })
+  //           if(!res.ok){
+  //             throw new Error(`HTTP error! Status: ${res.status}`);
+  //           }
+            
+  //           const data = await res.json();
+  //           console.log(`POST success`, data)  
+  //       } catch(error){
+  //         console.log(`problem with posting to api history: ${imageObj}`)
+  //       } 
           
-      } else {console.log(`no post method, iagme already exists`)}
-    }
+  //     } else {console.log(`no post method, iagme already exists`)}
+  //   }
 
-    postImage()
+  //   postImage()
 
-  }, [results, imageExists])
+  // }, [history])
 
 
 // ------------------------------------------------- UTIL FUNCTIONS
@@ -119,12 +130,43 @@ function App() {
     }
   }
 
+  const postImage = async (caption, currentRes) => {
+      if(currentRes){
+      const imageObj = {
+        caption: caption,
+        class_catgories: currentRes,
+        image_url: imageURL
+      }
+
+      console.log(imageObj)
+
+      try {
+        const res = await fetch(`${API_URL}/api/history`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json",},
+            body: JSON.stringify(imageObj)
+        })
+            
+        if(!res.ok){ throw new Error(`HTTP error! Status: ${res.status}`); }
+        const data = await res.json();
+        console.log(`POST success`, data)
+        setHistory([imageURL, ...history])
+
+        } catch(error){
+          console.log(`problem with posting to api history: ${imageObj}`)
+        } 
+          
+      } 
+      else {console.log(`image needs to be identified`)}
+  }
+
   const identify = async () => {
     // urlInputRef.current.value=''
     const results = await model.classify(imageRef.current)
     setResults(results)
     console.log(results)
   }
+  
 
 
   const handleImgLoad = (e) => {
@@ -146,6 +188,7 @@ function App() {
   }
 
 
+  // ----------------------------------------------- return React Components
   if(pageLoading){
     return (<PageLoading/>)
   }
@@ -161,7 +204,8 @@ function App() {
             <MainContent 
               imageURL={imageURL} imageRef={imageRef} results={results} 
               identify={identify} urlInputRef={urlInputRef} handleImgOnChange={handleImgOnChange} 
-              handleImgLoad={handleImgLoad} userCaptionRef={userCaptionRef}
+              handleImgLoad={handleImgLoad} userCaptionRef={userCaptionRef} postImage={postImage}
+              setUserCaption={setUserCaption}
             />
           </div>
           <div className="historybar-ctn container w-5/12 h-5/6 overflow-y-scroll">
