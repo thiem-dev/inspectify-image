@@ -11,7 +11,7 @@ const ToastEvent = ({toastStatus, toastText}) => {
             timeout = setTimeout(() => {setShow(false)}, 5000)
         }
         return () => clearTimeout(timeout)
-    }, [toastStatus])
+    }, [toastStatus, toastText])
 
     const handleClick = () => {
         setShow(false)

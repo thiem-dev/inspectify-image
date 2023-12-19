@@ -93,8 +93,6 @@ function App() {
         image_url: imageURL
       }
 
-      console.log(imageObj)
-
       try {
         const res = await fetch(`${API_URL}/api/history`, {
           method: 'POST',
@@ -127,15 +125,18 @@ function App() {
     console.log(results)
   }
 
+
+  //TODO this function doesn't wrk
   const handleImgLoad = (e) => {
     const isImgLoaded = e.target.naturalWidth > 0;
+    console.log('handleimgload')
 
     if(isImgLoaded){
       setImageLoaded(true)
     } else {
-      // set daisyui toast fail
-      console.log('image url is invalid')
       setImageLoaded(false)
+      setToastStatus('fail'); setToastText('image url is invalid')
+      console.log('image url is invalid')
     }
   }
      
@@ -144,11 +145,11 @@ function App() {
     setResults([])
   }
 
-
   // ----------------------------------------------- return React Components
   if(pageLoading){
     return (<PageLoading/>)
   }
+
 
   //TODO styling the main layout
   return (
