@@ -24,7 +24,7 @@ const MainContent = ({imageURL,
     const submitUserPost = (e) => {
 
         console.log('submitted response', caption, results)
-        postImage(caption, results)
+        postImage(caption)
     }
 
 

@@ -37,7 +37,10 @@ function App() {
 
   const API_URL = `https://inspectify-image-server-dev.onrender.com`
 
+
   useEffect(() => {
+
+    //on load history fetch
     const getHistory = async () => {
       try {
         const res = await fetch(`${API_URL}/api/history`)
@@ -50,6 +53,13 @@ function App() {
       }
     }
 
+    const tfModelInit = () => {
+      loadModel()
+      setPageLoading(false)
+      setToastStatus('success'); setToastText('model rendered');
+    }
+
+    tfModelInit()
     getHistory();
     // setHistory(sampleData)
   }, [])
@@ -63,12 +73,6 @@ function App() {
   }, [imageURL])
 
 
-  useEffect(() => {
-    loadModel()
-    setPageLoading(false)
-    setToastStatus('success'); setToastText('model rendered');
-  }, [])
-
 
 // ------------------------------------------------- UTIL FUNCTIONS
 
@@ -81,11 +85,11 @@ function App() {
     }
   }
 
-  const postImage = async (caption, currentRes) => {
-      if(currentRes){
+  const postImage = async (caption) => {
+      if(results){
       const imageObj = {
         caption: caption,
-        class_categories: currentRes,
+        class_categories: results,
         image_url: imageURL
       }
 
@@ -145,7 +149,6 @@ function App() {
   if(pageLoading){
     return (<PageLoading/>)
   }
-
 
   //TODO styling the main layout
   return (
