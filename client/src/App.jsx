@@ -12,7 +12,7 @@ import { useState, useEffect, useRef } from 'react'
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import * as tf from '@tensorflow/tfjs';
 import './App.css'
-import sampleData from './assets/sampleData.json'
+// import sampleData from './assets/sampleData.json'
 import MainContent from './components/MainContent'
 import HistoryBar from './components/HistoryBar'
 import PageLoading from './components/Loading/PageLoading'
@@ -31,7 +31,6 @@ function App() {
   const [toastStatus, setToastStatus] = useState(true)
   const [toastText, setToastText] = useState('default')
 
-
   const imageRef = useRef()
   const urlInputRef = useRef()
   const userCaptionRef = useRef()
@@ -39,7 +38,6 @@ function App() {
   const API_URL = `https://inspectify-image-server-dev.onrender.com`
 
   useEffect(() => {
-
     const getHistory = async () => {
       try {
         const res = await fetch(`${API_URL}/api/history`)
@@ -72,7 +70,6 @@ function App() {
   // }, [imageURL])
 
 
-
   useEffect(() => {
     loadModel()
     setPageLoading(false)
@@ -95,7 +92,7 @@ function App() {
       if(currentRes){
       const imageObj = {
         caption: caption,
-        class_catgories: currentRes,
+        class_categories: currentRes,
         image_url: imageURL
       }
 
@@ -103,22 +100,21 @@ function App() {
 
       try {
         const res = await fetch(`${API_URL}/api/history`, {
-            method: 'POST',
-            headers: {"Content-Type": "application/json",},
-            body: JSON.stringify(imageObj)
+          method: 'POST',
+          headers: {"Content-Type": "application/json",},
+          body: JSON.stringify(imageObj)
         })
             
-        if(!res.ok){ throw new Error(`HTTP error! Status: ${res.status}`); }
-        const data = await res.json();
-        console.log(`POST success`, data)
-        setHistory([imageObj, ...history])
+          if(!res.ok){ throw new Error(`HTTP error! Status: ${res.status}`); }
+          const data = await res.json();
+          console.log(`POST success`, data)
+          setHistory([imageObj, ...history])
 
         } catch(error){
           console.log(`problem with posting to api history: ${imageObj}`)
         } 
           
-      } 
-      else {console.log(`image needs to be identified`)}
+      } else {console.log(`image needs to be identified`)}
   }
 
   const identify = async () => {
