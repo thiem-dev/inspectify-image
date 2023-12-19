@@ -27,7 +27,8 @@ app.get('/api/history', async (req, res) => {
     
     try{
         const result = await pool.query(
-            `SELECT * FROM history`
+            `SELECT * FROM history 
+            ORDER BY created_at DESC;`
         );
         if(result.rows.length === 0){
             return res.status(400).send(`No rows found in history table`);
