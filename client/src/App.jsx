@@ -54,20 +54,13 @@ function App() {
     // setHistory(sampleData)
   }, [])
 
-  // if current history doesn't already have this url, then add it to history and post to db
-  // useEffect(() => {
-  //   if(imageLoaded){
-  //     const imageUrlExists = history.some(item => { return item.image_url == imageURL })
-  //     imageUrlExists ? console.log('img already exists') : setHistory([imageURL, ...history])
-  //     setImageExists(imageUrlExists)
-  //     console.log('imageloaded', imageURL)
-  //   }
+  // display imageurl when image is focused from history
+  useEffect(() => {
+    if(imageURL){
+      urlInputRef.current.value = imageURL
+    }
 
-  //   if(imageURL){
-  //     urlInputRef.current.value = imageURL
-  //   }
-
-  // }, [imageURL])
+  }, [imageURL])
 
 
   useEffect(() => {
@@ -108,7 +101,13 @@ function App() {
           if(!res.ok){ throw new Error(`HTTP error! Status: ${res.status}`); }
           const data = await res.json();
           console.log(`POST success`, data)
+          
+          //set history and reset input values
           setHistory([imageObj, ...history])
+          userCaptionRef.current.value = '';
+          urlInputRef.current.value = ''
+          setResults([])
+          setImageURL(null)
 
         } catch(error){
           console.log(`problem with posting to api history: ${imageObj}`)

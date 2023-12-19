@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const ToastEvent = ({toastStatus, toastText}) => {
     const [show, setShow] = useState(true);
 
-    console.log(toastText)
+    // console.log(toastText)
 
     useEffect(() => {
         let timeout; 
