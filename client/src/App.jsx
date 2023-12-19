@@ -73,17 +73,7 @@ function App() {
     setResults(results)
     console.log(results)
   }
-
-  const uploadImage = (e) => {
-    const {files} = e.target
-    if(files.length > 0){
-      const url = URL.createObjectURL(files[0])
-      setImageURL(url)
-    } else {
-      setImageURL(null)
-    }
-  }
-
+  
   const handleImgLoad = (e) => {
     const isImgLoaded = e.target.naturalWidth > 0;
 
