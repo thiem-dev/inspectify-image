@@ -48,7 +48,7 @@ function App() {
         setHistoryLoading(false)
       } catch (error) {
         console.log('something went wrong with getting history api')
-        setHistory(false)
+        setHistoryLoading(false)
       }
     }
 
@@ -78,45 +78,6 @@ function App() {
     setPageLoading(false)
     setToastStatus('success'); setToastText('model rendered');
   }, [])
-
-
-    //POST image to history route
-  // useEffect(() => {
-
-  //   // TODO - current
-  //   const postImage = async () => {
-  //     if(!imageExists){
-
-  //       const imageObj = {
-  //         caption: userCaptionRef,
-  //         class_catgories: results,
-  //         image_url: imageURL
-  //       }
-        
-  //       try {
-  //           const res = await fetch(`${API_URL}/api/history`, {
-  //             method: 'POST',
-  //             headers: {
-  //                 "Content-Type": "application/json",
-  //                 },
-  //                 body: JSON.stringify(imageObj)
-  //           })
-  //           if(!res.ok){
-  //             throw new Error(`HTTP error! Status: ${res.status}`);
-  //           }
-            
-  //           const data = await res.json();
-  //           console.log(`POST success`, data)  
-  //       } catch(error){
-  //         console.log(`problem with posting to api history: ${imageObj}`)
-  //       } 
-          
-  //     } else {console.log(`no post method, iagme already exists`)}
-  //   }
-
-  //   postImage()
-
-  // }, [history])
 
 
 // ------------------------------------------------- UTIL FUNCTIONS
@@ -150,7 +111,7 @@ function App() {
         if(!res.ok){ throw new Error(`HTTP error! Status: ${res.status}`); }
         const data = await res.json();
         console.log(`POST success`, data)
-        setHistory([imageURL, ...history])
+        setHistory([imageObj, ...history])
 
         } catch(error){
           console.log(`problem with posting to api history: ${imageObj}`)
