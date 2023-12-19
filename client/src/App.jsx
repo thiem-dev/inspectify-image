@@ -44,16 +44,18 @@ function App() {
     // setHistory(sampleData)
   }, [])
 
+  //if current history doesn't already have this url, then add it to history and post to db
   useEffect(() => {
-    //TODO if() handle if image actually loaded
-    if(imageURL){
-      setHistory([imageURL, ...history])
+    if(imageLoaded){
+      const imageUrlExists = history.some(item => { return item.image_url == imageURL })
+      imageUrlExists ? console.log('img already exists') : setHistory([imageURL, ...history])
     }
+
   }, [imageURL])
 
   useEffect(() => {
     loadModel()
-    pageLoading(false)
+    setPageLoading(false)
     setToastStatus('success'); setToastText('model rendered');
   }, [])
 
@@ -76,19 +78,19 @@ function App() {
     console.log(results)
   }
 
-  //TODO not set yet
+
   const handleImgLoad = (e) => {
     const isImgLoaded = e.target.naturalWidth > 0;
 
     if(isImgLoaded){
-      setImageLoaded(isImgLoaded)
+      setImageLoaded(true)
     } else {
       // set daisyui toast fail
       console.log('image url is invalid')
+      setImageLoaded(false)
     }
   }
 
-  // TODO rename to handleImgOnChange
   const handleImgOnChange = (e) => {
     setImageURL(e.target.value)
     setResults([])

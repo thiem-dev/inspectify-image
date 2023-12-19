@@ -11,6 +11,7 @@ const HistoryBar = ({ history, setImageURL, historyLoading }) => {
         return (<HistoryLoading/>)
     }
 
+
     const classText = (data) => {return data.map(([key, val],index) => (
         <div key={`${key}-${index}`} className="text-lg p-1">{key} {`${val*100}%`}</div>
     ))}
@@ -27,7 +28,9 @@ const HistoryBar = ({ history, setImageURL, historyLoading }) => {
             <div className="curtain absolute inset-0 bg-transparent group-hover:bg-gray-800/80"></div>
 
             <div className="text-ctn absolute inset-0 flex flex-col text-gray-100 px-9 translate-y-[110%] overflow-hidden group-hover:translate-y-[30%]" >
-                {classText(Object.entries(image.class_categories))}
+                { image.class_categories !== null
+                    ? classText(Object.entries(image.class_categories)) 
+                    : <div>no class categories</div> }
             </div>
         </div>
         
