@@ -122,8 +122,6 @@ function App() {
     setResults(results)
     console.log(results)
   }
-  
-
 
   const handleImgLoad = (e) => {
     const isImgLoaded = e.target.naturalWidth > 0;
@@ -136,7 +134,6 @@ function App() {
       setImageLoaded(false)
     }
   }
-
      
   const handleImgOnChange = (e) => {
     setImageURL(e.target.value)
