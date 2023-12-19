@@ -1,4 +1,7 @@
-// TODO add onchange input valudation for caption
+// TODO only submit if all: imageURL, caption, class categories exist else, toast error
+
+
+
 import {useState} from 'react'
 import ClassResults from "./ClassResults"
 
@@ -19,7 +22,6 @@ const MainContent = ({imageURL,
     }
 
     const submitUserPost = (e) => {
-        e.preventDefault()
 
         console.log('submitted response', caption, results)
         postImage(caption, results)
@@ -43,9 +45,6 @@ const MainContent = ({imageURL,
             <h1>Main Content</h1>
             <div className="maincontent-ctn container mx-auto my-1 px-8 h-full w-full flex flex-col justify-evenly">
             
-            <form onSubmit={submitUserPost}>
-
-            </form>
                 <div className="inputHolder flex flex-row gap-8">
                     <input type="text" placeholder='Paste imge URL' ref={urlInputRef} onChange={handleImgOnChange}
                         className="w-9/12" />
@@ -53,7 +52,7 @@ const MainContent = ({imageURL,
                 </div>
                 <div>
                     <input id='userCaption' type='text' placeholder='caption the image' ref={userCaptionRef} onChange={handleCaptionChange} />
-                    <button type='submit' onClick={submitUserPost}>Save to history</button>
+                    <button onClick={submitUserPost}>Save to history</button>
                     
                 </div>
                 
