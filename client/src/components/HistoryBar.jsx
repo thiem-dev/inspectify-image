@@ -1,10 +1,15 @@
 import { useState } from "react";
+import HistoryLoading from './Loading/HistoryLoading'
 
-const HistoryBar = ({ history, setImageURL }) => {
+const HistoryBar = ({ history, setImageURL, historyLoading }) => {
     const [classBadges, setClassBadges] = useState([]);
 
     // console.log(history)
     // key={`hcard${item.id}`} 
+
+    if(historyLoading){
+        return (<HistoryLoading/>)
+    }
 
     const classText = (data) => {return data.map(([key, val],index) => (
         <div key={`${key}-${index}`} className="text-lg p-1">{key} {`${val*100}%`}</div>

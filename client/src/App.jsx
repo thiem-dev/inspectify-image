@@ -1,11 +1,10 @@
-/* TODO
-- load history from DB -done
+/* TODO - current page loading states?
 - show toast on img loads 
-- make toast disappear after 5s w/ decreasing progress bar or click to clear -done
-- click and img ref and focus changes - done 
 - save img to history
 - render box around classification objects
 - separate classificiation div names from the progress bar so it doesn't jump around
+- add more toast types
+- separate main content load and history content loading states
 */
 
 import { useState, useEffect, useRef } from 'react'
@@ -15,13 +14,13 @@ import './App.css'
 import sampleData from './assets/sampleData.json'
 import MainContent from './components/MainContent'
 import HistoryBar from './components/HistoryBar'
-import Loading from './components/Loading'
+import PageLoading from './components/Loading/PageLoading'
 import ToastEvent from './components/ToastEvent';
 
 function App() {
   const [history, setHistory] = useState([])
   const [pageLoading, setPageLoading] = useState(true)
-  const [modelLoading, setModelLoading] = useState(true)
+  const [historyLoading, setHistoryLoading] = useState(true)
   const [model, setModel] = useState(null)
   const [results, setResults] = useState([])
   const [imageURL, setImageURL] = useState(null)
@@ -31,7 +30,6 @@ function App() {
 
   const imageRef = useRef()
   const textInputRef = useRef()
-  const fileInputRef = useRef()
 
   useEffect(() => {
 
@@ -39,7 +37,7 @@ function App() {
       const res = await fetch('https://inspectify-image-server-dev.onrender.com/api/history')
       const data = await res.json()
       setHistory(data)
-      setPageLoading(false)
+      setHistoryLoading(false)
     }
 
     getHistory();
@@ -55,7 +53,7 @@ function App() {
 
   useEffect(() => {
     loadModel()
-    setModelLoading(false)
+    pageLoading(false)
     setToastStatus('success'); setToastText('model rendered');
   }, [])
 
@@ -78,6 +76,7 @@ function App() {
     console.log(results)
   }
 
+  //TODO not set yet
   const handleImgLoad = (e) => {
     const isImgLoaded = e.target.naturalWidth > 0;
 
@@ -90,16 +89,14 @@ function App() {
   }
 
   // TODO rename to handleImgOnChange
-  const handleOnChange = (e) => {
+  const handleImgOnChange = (e) => {
     setImageURL(e.target.value)
     setResults([])
   }
 
 
-  
-
-  if(pageLoading && modelLoading){
-    return (<Loading/>)
+  if(pageLoading){
+    return (<PageLoading/>)
   }
 
 
@@ -112,12 +109,12 @@ function App() {
           <div className="w-7/12 h-5/6">
             <MainContent 
               imageURL={imageURL} imageRef={imageRef} results={results} 
-              identify={identify} textInputRef={textInputRef} handleOnChange={handleOnChange} 
+              identify={identify} textInputRef={textInputRef} handleImgOnChange={handleImgOnChange} 
               handleImgLoad={handleImgLoad} 
             />
           </div>
           <div className="historybar-ctn container w-5/12 h-5/6 overflow-y-scroll">
-            <HistoryBar history={history} setImageURL={setImageURL}/>
+            <HistoryBar history={history} setImageURL={setImageURL} historyLoading={historyLoading}/>
           </div>
         </div>{/* <! END MAIN HOLDER--> */}
        </div>{/* <! END MAIN BODY--> */}

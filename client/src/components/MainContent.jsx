@@ -5,7 +5,7 @@ import ClassResults from "./ClassResults"
 
 const MainContent = ({imageURL, 
     imageRef, results, identify, 
-    textInputRef, uploadImage, handleOnChange,
+    textInputRef, uploadImage, handleImgOnChange,
     handleImgLoad
     }) => {
 
@@ -25,7 +25,7 @@ const MainContent = ({imageURL,
             <div className="maincontent-ctn container mx-auto my-1 px-8 h-full w-full flex flex-col justify-evenly">
                 
                 <div className="inputHolder flex flex-row gap-8">
-                    <input type="text" placeholder='Paste imge URL' ref={textInputRef} onChange={handleOnChange}
+                    <input type="text" placeholder='Paste imge URL' ref={textInputRef} onChange={handleImgOnChange}
                         className="w-9/12" />
                     {imageURL && <button className='button bg-stone-700' onClick={identify} >Identify Image</button>}
                 </div>

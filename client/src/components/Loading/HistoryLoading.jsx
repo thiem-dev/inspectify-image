@@ -1,4 +1,4 @@
-const Loading = ({props}) => {
+const PageLoading = (props) => {
     return (
         <div className="loading-ctn container">
             <h1>Loading Content</h1>
@@ -13,4 +13,4 @@ const Loading = ({props}) => {
     )
 }
 
-export default Loading
+export default PageLoading
