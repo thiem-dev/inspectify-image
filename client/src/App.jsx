@@ -1,7 +1,7 @@
 /* TODO
-- load history from DB
-- show toast on img loads
-- make toast disappear after 5s w/ decreasing progress bar or click to clear
+- load history from DB -done
+- show toast on img loads 
+- make toast disappear after 5s w/ decreasing progress bar or click to clear -done
 - click and img ref and focus changes - done 
 - save img to history
 - render box around classification objects
@@ -20,7 +20,8 @@ import ToastEvent from './components/ToastEvent';
 
 function App() {
   const [history, setHistory] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [pageLoading, setPageLoading] = useState(true)
+  const [modelLoading, setModelLoading] = useState(true)
   const [model, setModel] = useState(null)
   const [results, setResults] = useState([])
   const [imageURL, setImageURL] = useState(null)
@@ -34,16 +35,15 @@ function App() {
 
   useEffect(() => {
 
-    // const getHistory = async () => {
-    //   const res = await fetch('')
-    //   const data = await res.json()
-    //   setHistory(data)
-    //   setIsLoading(false)
-    // }
+    const getHistory = async () => {
+      const res = await fetch('https://inspectify-image-server-dev.onrender.com/api/history')
+      const data = await res.json()
+      setHistory(data)
+      setPageLoading(false)
+    }
 
-    // getHistory();
-
-    setHistory(sampleData)
+    getHistory();
+    // setHistory(sampleData)
   }, [])
 
   useEffect(() => {
@@ -55,8 +55,12 @@ function App() {
 
   useEffect(() => {
     loadModel()
-    setLoading(false)
+    setModelLoading(false)
+    setToastStatus('success'); setToastText('model rendered');
   }, [])
+
+
+// ------------------------------------------------- UTIL FUNCTIONS
 
   const loadModel = async () => {
     try{
@@ -73,7 +77,7 @@ function App() {
     setResults(results)
     console.log(results)
   }
-  
+
   const handleImgLoad = (e) => {
     const isImgLoaded = e.target.naturalWidth > 0;
 
@@ -94,7 +98,7 @@ function App() {
 
   
 
-  if(loading){
+  if(pageLoading && modelLoading){
     return (<Loading/>)
   }
 

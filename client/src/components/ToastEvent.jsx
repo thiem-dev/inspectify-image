@@ -1,23 +1,38 @@
-const ToastEvent = ({toastStatus, toastText}) => {
+import React, { useEffect, useState } from 'react';
 
-    // console.log(toastStatus, toastText)
+const ToastEvent = ({toastStatus, toastText}) => {
+    const [show, setShow] = useState(true);
+
+    console.log(toastText)
+
+    useEffect(() => {
+        let timeout; 
+        if(toastStatus){
+            timeout = setTimeout(() => {setShow(false)}, 5000)
+        }
+        return () => clearTimeout(timeout)
+    }, [toastStatus])
+
+    const handleClick = () => {
+        setShow(false)
+    }
     
     const toastItem = () => {
-        if (toastStatus){
+        if (toastStatus === 'success'){
             console.log('inside ToastStatus')
             return (
-                <div className="toast z-100">
+                <div onClick={handleClick} className="toast z-100">
                     <div className="alert alert-success">
-                    <span>Success.</span>
+                        <span>Sucess! {toastText}</span> 
                     </div>
                 </div>
                 )
         } else {
             console.log('inside toast fail')
             return (
-            <div className="toast">
-                <div className="alert alert-success">
-                <span>Success.</span>
+            <div onClick={handleClick} className="toast">
+                <div className="alert alert-fail">
+                <span>{toastText}</span>
                 </div>
             </div> 
             )
@@ -25,7 +40,7 @@ const ToastEvent = ({toastStatus, toastText}) => {
     }
 
 
-      return toastItem()
+    return (show && toastItem())
 }
 
 export default ToastEvent
