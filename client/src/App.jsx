@@ -2,10 +2,10 @@
 - load history from DB
 - show toast on img loads
 - make toast disappear after 5s w/ decreasing progress bar or click to clear
-- click and img ref and focus changes 
+- click and img ref and focus changes - done 
 - save img to history
 - render box around classification objects
--
+- separate classificiation div names from the progress bar so it doesn't jump around
 */
 
 import { useState, useEffect, useRef } from 'react'

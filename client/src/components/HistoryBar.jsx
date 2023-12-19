@@ -4,12 +4,14 @@ const HistoryBar = ({ history, setImageURL }) => {
     const [classBadges, setClassBadges] = useState([]);
 
     // console.log(history)
-    // key={`hcard${item.id}`} key={`${image}${index}`}
-    const historyCards = history.map((image, item, index) => (
-        <div  onClick={() => setImageURL(image)} 
+    // key={`hcard${item.id}`} 
+
+    const historyCards = history.map((image, index) => (
+        <div key={`${image}${index}`}
+            onClick={() => setImageURL(image.image_url)} 
             className="card group relative col-span-4 h-[200px] bg-base-100 shadow-xl cursor-pointer overflow-hidden">
             <div className="img-ctn h-[300px] w-[300px] overflow-hidden">
-                <img src={item.image_url} alt={item.caption}
+                <img src={image.image_url} alt={image.caption}
                 className='object-cover group-hover:scale-110'/>
             </div>
 
@@ -23,7 +25,6 @@ const HistoryBar = ({ history, setImageURL }) => {
         </div>
         
         ))
-            
 
 
     return (
