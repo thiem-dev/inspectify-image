@@ -2,28 +2,17 @@ import { useState } from "react";
 import HistoryLoading from './Loading/HistoryLoading'
 
 const HistoryBar = ({ history, setImageURL, historyLoading }) => {
-    const [classBadges, setClassBadges] = useState([]);
-
-    // console.log(history)
-    // key={`hcard${item.id}`} 
-
     if(historyLoading){
         return (<HistoryLoading/>)
     }
 
-
-    // const classText = (data) => {
-    //     return data.map(([key, val],index) => (
-    //     <div key={`${key}-${index}`} className="text-lg p-1">{key} {`${val*100}%`}</div>
-    // ))}
-
-    // const classText2 = (data) => {console.log('historybar class categories', data)}
-
-    const classText3 = (classData) => {
-        return Object.entries(classData).map(([key, val], index) => (
-            <div key={`${key}-${index}`} className="text-lg p-1">{key} {`${val*100}%`}</div>
-        ))
-    }
+    const classText = (image) => {return (
+            image.class_categories.map((cat,index) => (
+                <div key={`${cat.className}-${index}`} className="text-lg p-1">
+                    <p>{cat.className} {`${cat.probability*100}%`}</p>
+                </div>
+        )) 
+    )}
 
     const historyCards = history.map((image, index) => (
         <div key={`${image}-${index}`}
@@ -37,17 +26,14 @@ const HistoryBar = ({ history, setImageURL, historyLoading }) => {
             <div className="curtain absolute inset-0 bg-transparent group-hover:bg-gray-800/80"></div>
 
             <div className="text-ctn absolute inset-0 flex flex-col text-gray-100 px-9 translate-y-[110%] overflow-hidden group-hover:translate-y-[30%]" >
+                <h1>{image.caption}</h1>
+                <br/>
                 { image.class_categories !== null
-                    ? classText3(image.class_categories) 
+                    ? classText(image) 
                     : <div>no class categories</div> }
-                {/* {image.class_categories !== null 
-                    ? classText2(image)
-                    : <div>no class categories</div> } */}
             </div>
         </div>
-        
-        ))
-
+    ))
 
     return (
         <>
@@ -56,7 +42,6 @@ const HistoryBar = ({ history, setImageURL, historyLoading }) => {
                 {historyCards}
             </div>
         </>
-        
 
     )
 }
