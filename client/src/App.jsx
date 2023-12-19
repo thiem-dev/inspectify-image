@@ -119,11 +119,11 @@ function App() {
             <MainContent 
               imageURL={imageURL} imageRef={imageRef} results={results} 
               identify={identify} textInputRef={textInputRef} handleOnChange={handleOnChange} 
-              handleImgLoad={handleImgLoad}
+              handleImgLoad={handleImgLoad} 
             />
           </div>
           <div className="historybar-ctn container w-5/12 h-5/6 overflow-y-scroll">
-            <HistoryBar history={history}/>
+            <HistoryBar history={history} setImageURL={setImageURL}/>
           </div>
         </div>{/* <! END MAIN HOLDER--> */}
        </div>{/* <! END MAIN BODY--> */}
