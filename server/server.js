@@ -84,7 +84,7 @@ app.post('/api/history', async (req, res) => {
         const result = await pool.query(
             `INSERT INTO history (image_url, caption, class_categories) VALUES
             ($1,$2,$3)
-            RETURNING *;`, [image_url, caption, class_categories]
+            RETURNING *;`, [image_url, caption, JSON.stringify(class_categories)]
         );
         if(result.rows.length === 0){
             return res.status(400).send(`Could not insert history row id: ${personId}, for caption: ${caption}`)
