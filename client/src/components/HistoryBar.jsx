@@ -1,29 +1,39 @@
 import { useState } from "react";
+import HistoryLoading from './Loading/HistoryLoading'
 
-const HistoryBar = ({ history }) => {
-    const [classBadges, setClassBadges] = useState([]);
+const HistoryBar = ({ history, setImageURL, historyLoading }) => {
+    if(historyLoading){
+        return (<HistoryLoading/>)
+    }
 
-    console.log(history)
+    const classText = (image) => {return (
+            image.class_categories.map((cat,index) => (
+                <div key={`${cat.className}-${index}`} className="text-lg p-1">
+                    <p>{cat.className} {`${cat.probability*100}%`}</p>
+                </div>
+        )) 
+    )}
 
-    const historyCards = history.map((item) => (
-        <div className="card group relative col-span-4 max-h-[900px] bg-base-100 shadow-xl cursor-pointer overflow-hidden" key={`hcard${item.id}`}>
+    const historyCards = history.map((image, index) => (
+        <div key={`${image}-${index}`}
+            onClick={() => setImageURL(image.image_url)} 
+            className="card group relative col-span-4 h-[200px] bg-base-100 shadow-xl cursor-pointer overflow-hidden">
             <div className="img-ctn h-[300px] w-[300px] overflow-hidden">
-                <img src={item.image_url} alt={item.caption}
+                <img src={image.image_url} alt={image.caption}
                 className='object-cover group-hover:scale-110'/>
             </div>
 
             <div className="curtain absolute inset-0 bg-transparent group-hover:bg-gray-800/80"></div>
 
             <div className="text-ctn absolute inset-0 flex flex-col text-gray-100 px-9 translate-y-[110%] overflow-hidden group-hover:translate-y-[30%]" >
-                <h1 className="text-3xl font-bold">Title</h1>
-                <div className="text-lg p-1">Date: 10-15-2023</div>
-                <p className="overflow-hidden">Description: Atmospheric refraction flattened the solar disk and Atmospheric refraction flattened the solar disk and</p>
+                <h1>{image.caption}</h1>
+                <br/>
+                { image.class_categories !== null
+                    ? classText(image) 
+                    : <div>no class categories</div> }
             </div>
         </div>
-        
-        ))
-            
-
+    ))
 
     return (
         <>
@@ -32,7 +42,6 @@ const HistoryBar = ({ history }) => {
                 {historyCards}
             </div>
         </>
-        
 
     )
 }
