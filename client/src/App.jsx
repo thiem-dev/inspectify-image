@@ -1,4 +1,4 @@
-/* TODO - current page loading states?
+/* TODO - 
 - show toast on img loads 
 - save img to history
 - render box around classification objects
@@ -25,19 +25,27 @@ function App() {
   const [results, setResults] = useState([])
   const [imageURL, setImageURL] = useState(null)
   const [imageLoaded, setImageLoaded] = useState(false)
+  const [imageExists, setImageExists] = useState(true)
   const [toastStatus, setToastStatus] = useState(true)
   const [toastText, setToastText] = useState('default')
 
+
   const imageRef = useRef()
-  const textInputRef = useRef()
+  const urlInputRef = useRef()
+  const userCaptionRef = useRef()
 
   useEffect(() => {
 
     const getHistory = async () => {
-      const res = await fetch('https://inspectify-image-server-dev.onrender.com/api/history')
-      const data = await res.json()
-      setHistory(data)
-      setHistoryLoading(false)
+      try {
+        const res = await fetch('https://inspectify-image-server-dev.onrender.com/api/history')
+        const data = await res.json()
+        setHistory(data)
+        setHistoryLoading(false)
+      } catch (error) {
+        console.log('something went wrong with getting history api')
+        setHistory(false)
+      }
     }
 
     getHistory();
@@ -49,6 +57,13 @@ function App() {
     if(imageLoaded){
       const imageUrlExists = history.some(item => { return item.image_url == imageURL })
       imageUrlExists ? console.log('img already exists') : setHistory([imageURL, ...history])
+      setImageExists(imageUrlExists)
+      console.log('imageloaded', imageURL)
+
+    }
+
+    if(imageURL){
+      urlInputRef.current.value = imageURL
     }
 
   }, [imageURL])
@@ -58,6 +73,39 @@ function App() {
     setPageLoading(false)
     setToastStatus('success'); setToastText('model rendered');
   }, [])
+
+  useEffect(() => {
+
+    // TODO - current
+    const postImage = () => {
+      if(!imageExists){
+
+        const imageObj = {
+          caption: 'default',
+          class_catgories: results,
+          image_url: imageURL
+        }
+
+      //   const response = await fetch(url, {
+      //     method: 'POST',
+      //     headers: {
+      //         "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(obj)
+      // });
+        // post method to history
+        //update history when post completes
+        // const imageObj = {
+            // imageref.current
+          // results
+          // }
+          
+      } else {console.log(`no post method, iagme already exists`)}
+    }
+
+    postImage()
+
+  }, [results, imageExists])
 
 
 // ------------------------------------------------- UTIL FUNCTIONS
@@ -72,7 +120,7 @@ function App() {
   }
 
   const identify = async () => {
-    // textInputRef.current.value=''
+    // urlInputRef.current.value=''
     const results = await model.classify(imageRef.current)
     setResults(results)
     console.log(results)
@@ -91,6 +139,7 @@ function App() {
     }
   }
 
+     
   const handleImgOnChange = (e) => {
     setImageURL(e.target.value)
     setResults([])
@@ -111,8 +160,8 @@ function App() {
           <div className="w-7/12 h-5/6">
             <MainContent 
               imageURL={imageURL} imageRef={imageRef} results={results} 
-              identify={identify} textInputRef={textInputRef} handleImgOnChange={handleImgOnChange} 
-              handleImgLoad={handleImgLoad} 
+              identify={identify} urlInputRef={urlInputRef} handleImgOnChange={handleImgOnChange} 
+              handleImgLoad={handleImgLoad} userCaptionRef={userCaptionRef}
             />
           </div>
           <div className="historybar-ctn container w-5/12 h-5/6 overflow-y-scroll">
