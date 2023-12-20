@@ -53,7 +53,7 @@ const MainContent = ({imageURL,
                 <div className="inputHolder flex flex-row gap-8">
                     <input id='userCaption' type='text' placeholder='caption the image' ref={userCaptionRef} onChange={handleCaptionChange} 
                         className="w-9/12"/>
-                    <button onClick={submitUserPost} className='button bg-stone-700'>Save to history</button>
+                    {imageURL && results && caption && <button onClick={submitUserPost} className='button bg-stone-700'>Save to history</button>}
                     
                 </div>
                 
