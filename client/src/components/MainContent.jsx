@@ -9,7 +9,7 @@ const MainContent = ({imageURL,
     imageRef, results, identify, 
     urlInputRef, uploadImage, handleImgOnChange,
     handleImgLoad, userCaptionRef, postImage, 
-    setUserCaption
+    setUserCaption, imageLoaded
     }) => {
 
     const [caption, setCaption] = useState('')
@@ -48,15 +48,16 @@ const MainContent = ({imageURL,
                 <div className="inputHolder flex flex-row gap-8">
                     <input type="text" placeholder='Paste imge URL' ref={urlInputRef} onChange={handleImgOnChange}
                         className="w-9/12" />
-                    {imageURL && <button className='button bg-stone-700' onClick={identify} >Identify Image</button>}
+                    {imageURL && imageLoaded && <button className='button bg-stone-700' onClick={identify} >Identify Image</button>}
                 </div>
-                <div className="inputHolder flex flex-row gap-8">
-                    <input id='userCaption' type='text' placeholder='caption the image' ref={userCaptionRef} onChange={handleCaptionChange} 
-                        className="w-9/12"/>
-                    {imageURL && results && caption && <button onClick={submitUserPost} className='button bg-stone-700'>Save to history</button>}
+                    {imageURL && results.length !== 0 && caption && imageLoaded 
+                        && (<div className="inputHolder flex flex-row gap-8">
+                                <input id='userCaption' type='text' placeholder='caption the image' ref={userCaptionRef} onChange={handleCaptionChange} 
+                                    className="w-9/12"/>
+                                <button onClick={submitUserPost} className='button bg-stone-700'>Save to history</button>
+                            </div>
+                    )}
                     
-                </div>
-                
                 <div className="resultsHolders">
                     <ClassResults results={results}/>
                 </div>

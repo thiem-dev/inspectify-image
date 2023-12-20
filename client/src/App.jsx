@@ -129,7 +129,7 @@ function App() {
   //TODO this function doesn't wrk
   const handleImgLoad = (e) => {
     const isImgLoaded = e.target.naturalWidth > 0;
-    console.log('handleimgload')
+    console.log('is image loaded:', isImgLoaded)
 
     if(isImgLoaded){
       setImageLoaded(true)
@@ -162,7 +162,7 @@ function App() {
               imageURL={imageURL} imageRef={imageRef} results={results} 
               identify={identify} urlInputRef={urlInputRef} handleImgOnChange={handleImgOnChange} 
               handleImgLoad={handleImgLoad} userCaptionRef={userCaptionRef} postImage={postImage}
-              setUserCaption={setUserCaption}
+              setUserCaption={setUserCaption} imageLoaded={imageLoaded}
             />
           </div>
           <div className="historybar-ctn container w-5/12 h-5/6 overflow-y-scroll">

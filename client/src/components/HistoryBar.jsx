@@ -35,6 +35,7 @@ const HistoryBar = ({ history, setImageURL, historyLoading }) => {
         </div>
     ))
 
+
     return (
         <>
             <h1>HistoryBar Content</h1>
