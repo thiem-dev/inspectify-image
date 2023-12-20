@@ -20,7 +20,7 @@ const HistoryBar = ({ history, setImageURL, historyLoading }) => {
             className="card group relative col-span-4 h-[200px] bg-base-100 shadow-xl cursor-pointer overflow-hidden">
             <div className="img-ctn h-[300px] w-[300px] overflow-hidden">
                 <img src={image.image_url} alt={image.caption}
-                className='object-cover group-hover:scale-110'/>
+                className='object-scale-down group-hover:scale-110 mx-auto'/>
             </div>
 
             <div className="curtain absolute inset-0 bg-transparent group-hover:bg-gray-800/80"></div>

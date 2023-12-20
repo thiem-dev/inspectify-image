@@ -32,23 +32,30 @@ const MainContent = ({imageURL,
 // --------------------------------------------- Content Elements
         
     // TODO add default height and width for the skeleton
-    let mainImg = <div className="skeleton w-11/12 h-11/12">Waiting for user input</div>
+    let mainImg = <div className="skeleton w-[500px] h-[1000px] rounded-2xl p-20 bg-neutral">
+        <p className='text-xl'>Image will load here</p>
+        <p className='text-md'>Waiting for user input <span className="loading loading-dots"></span></p>
+        
+    </div>
 
     if(imageURL){
         mainImg = <img src={imageURL} alt="Upload Preview" crossOrigin="anonymous"
         ref={imageRef} onLoad={handleImgLoad}
-        className="object-contain w-80 h-80"/>
+        className="object-contain w-8/12 h-8/12"/>
     }
 
     return (
         <>
 
-            <div className="maincontent-ctn container mx-auto my-1 px-8 h-full w-full flex flex-col justify-evenly">
-                <h1 className='font-bold text-3xl text-primary'>Paste a url and learn about your image</h1>
-                <div className="inputHolder flex flex-row gap-8 p-2 bg-accent">
+            <div className="maincontent-ctn container mx-auto my-1 px-8 h-full w-full flex flex-col justify-center gap-y-3">
+                <h1 className='font-bold text-2xl text-primary'>Paste a url and learn about your image</h1>
+                <div className="inputHolder flex flex-row gap-8 w-full text-lg mb-12">
                     <input type="text" placeholder='Paste imge URL' ref={urlInputRef} onChange={handleImgOnChange}
-                        className="w-9/12" />
-                    {imageURL && imageLoaded && <button className='button bg-stone-700' onClick={identify} >Identify Image</button>}
+                        className="w-9/12 p-2.5 " />
+                    {imageURL && imageLoaded 
+                        && <button onClick={identify} 
+                            className='btn bg-neutral-content hover:bg-secondary hover:scale-110 text-neutral text-lg' > Identify </button>
+                    }
                 </div>
                     {imageURL && results.length !== 0 && caption && imageLoaded 
                         && (<div className="inputHolder flex flex-row gap-8">
