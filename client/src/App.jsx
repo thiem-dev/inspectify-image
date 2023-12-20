@@ -30,6 +30,7 @@ function App() {
   const [imageExists, setImageExists] = useState(true)
   const [toastStatus, setToastStatus] = useState(true)
   const [toastText, setToastText] = useState('default')
+  const [isNewUser, setNewUser] = useState(true) 
 
   const imageRef = useRef()
   const urlInputRef = useRef()
@@ -145,10 +146,29 @@ function App() {
     setResults([])
   }
 
+  const newUserHandler = (e) => {
+    setNewUser(false)
+  }
+
   // ----------------------------------------------- return React Components
   if(pageLoading){
     return (<PageLoading/>)
   }
+
+  if(isNewUser){
+    return (
+      <div className="hero min-h-screen absolute" style={{backgroundImage: 'url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)'}}>
+        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-content text-center text-neutral-content">
+          <div className="max-w-md">
+            <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+            <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+            <button className="btn btn-primary" onClick={newUserHandler}>Get Started</button>
+          </div>
+        </div>
+      </div>
+    )}
+   
 
 
   //TODO styling the main layout
@@ -165,6 +185,7 @@ function App() {
               setUserCaption={setUserCaption} imageLoaded={imageLoaded}
             />
           </div>
+          <div className="divider divider-horizontal py-20 divider-secondary"><span className="[writing-mode:vertical-lr]">History</span></div> 
           <div className="historybar-ctn container w-5/12 h-5/6 overflow-y-scroll">
             <HistoryBar history={history} setImageURL={setImageURL} historyLoading={historyLoading}/>
           </div>

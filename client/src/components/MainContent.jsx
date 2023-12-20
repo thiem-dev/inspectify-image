@@ -42,10 +42,10 @@ const MainContent = ({imageURL,
 
     return (
         <>
-            <h1>Main Content</h1>
+
             <div className="maincontent-ctn container mx-auto my-1 px-8 h-full w-full flex flex-col justify-evenly">
-            
-                <div className="inputHolder flex flex-row gap-8">
+                <h1 className='font-bold text-3xl text-primary'>Paste a url and learn about your image</h1>
+                <div className="inputHolder flex flex-row gap-8 p-2 bg-accent">
                     <input type="text" placeholder='Paste imge URL' ref={urlInputRef} onChange={handleImgOnChange}
                         className="w-9/12" />
                     {imageURL && imageLoaded && <button className='button bg-stone-700' onClick={identify} >Identify Image</button>}

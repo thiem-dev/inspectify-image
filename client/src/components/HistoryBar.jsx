@@ -38,7 +38,7 @@ const HistoryBar = ({ history, setImageURL, historyLoading }) => {
 
     return (
         <>
-            <h1>HistoryBar Content</h1>
+            <h1 className="font-bold text-3xl">Prior images</h1>
             <div className="historyCardHolder grid grid-flow-row grid-cols-1 sm:grid-cols-4 md:grid-cols-8 gap-5 my-8 mx-8 justify-evenly content-center">
                 {historyCards}
             </div>
