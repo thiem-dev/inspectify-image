@@ -17,10 +17,10 @@ const HistoryBar = ({ history, setImageURL, historyLoading }) => {
     const historyCards = history.map((image, index) => (
         <div key={`${image}-${index}`}
             onClick={() => setImageURL(image.image_url)} 
-            className="card group relative col-span-4 h-[200px] bg-base-100 shadow-xl cursor-pointer overflow-hidden">
-            <div className="img-ctn h-[300px] w-[300px] overflow-hidden">
+            className="flex justify-center items-center card group relative col-span-4 h-[200px] bg-base-100 shadow-xl cursor-pointer overflow-hidden">
+            <div className="flex justify-center items-center h-[400px] w-[400px] overflow-hidden">
                 <img src={image.image_url} alt={image.caption}
-                className='object-scale-down group-hover:scale-110 mx-auto'/>
+                className='object-fit group-hover:scale-110'/>
             </div>
 
             <div className="curtain absolute inset-0 bg-transparent group-hover:bg-gray-800/80"></div>
@@ -39,7 +39,7 @@ const HistoryBar = ({ history, setImageURL, historyLoading }) => {
     return (
         <>
             <h1 className="font-bold text-3xl">Prior images</h1>
-            <div className="historyCardHolder grid grid-flow-row grid-cols-1 sm:grid-cols-4 md:grid-cols-8 gap-5 my-8 mx-8 justify-evenly content-center">
+            <div className="historyCardHolder grid grid-flow-row grid-cols-1 md:grid-cols-4 lg:grid-cols-8 gap-5 my-8 mx-8 justify-evenly content-center">
                 {historyCards}
             </div>
         </>

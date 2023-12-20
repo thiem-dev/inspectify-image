@@ -22,7 +22,6 @@ const MainContent = ({imageURL,
     }
 
     const submitUserPost = (e) => {
-
         console.log('submitted response', caption, results)
         postImage(caption)
     }
@@ -32,16 +31,15 @@ const MainContent = ({imageURL,
 // --------------------------------------------- Content Elements
         
     // TODO add default height and width for the skeleton
-    let mainImg = <div className="skeleton w-[500px] h-[1000px] rounded-2xl p-20 bg-neutral">
-        <p className='text-xl'>Image will load here</p>
-        <p className='text-md'>Waiting for user input <span className="loading loading-dots"></span></p>
-        
-    </div>
+    let mainImg = <div className="skeleton w-[400px] h-[250px] rounded-2xl p-20 bg-neutral">
+                    <p className='text-xl'>Image will load here</p>
+                    <p className='text-md'>Waiting for user input <span className="loading loading-dots"></span></p>
+                </div>
 
     if(imageURL){
         mainImg = <img src={imageURL} alt="Upload Preview" crossOrigin="anonymous"
-        ref={imageRef} onLoad={handleImgLoad}
-        className="object-contain w-8/12 h-8/12"/>
+                    ref={imageRef} onLoad={handleImgLoad}
+                    className="object-contain w-full h-full"/>
     }
 
     return (
@@ -54,21 +52,21 @@ const MainContent = ({imageURL,
                         className="w-9/12 p-2.5 " />
                     {imageURL && imageLoaded 
                         && <button onClick={identify} 
-                            className='btn bg-neutral-content hover:bg-secondary hover:scale-110 text-neutral text-lg' > Identify </button>
+                            className='btn bg-neutral-content hover:bg-primary hover:scale-105 text-neutral text-lg' > Identify </button>
                     }
                 </div>
-                    {imageURL && results.length !== 0 && caption && imageLoaded 
-                        && (<div className="inputHolder flex flex-row gap-8">
+                    {imageURL && results.length !== 0 && imageLoaded 
+                        && (<div className="inputHolder flex flex-row gap-8 mb-8">
                                 <input id='userCaption' type='text' placeholder='caption the image' ref={userCaptionRef} onChange={handleCaptionChange} 
                                     className="w-9/12"/>
-                                <button onClick={submitUserPost} className='button bg-stone-700'>Save to history</button>
+                                {caption && <button onClick={submitUserPost} className='btn bg-neutral-content hover:bg-primary hover:scale-105 text-neutral text-lg'>Save to history</button>}
                             </div>
                     )}
                     
                 <div className="resultsHolders">
                     <ClassResults results={results}/>
                 </div>
-                <div className="Imageholder px-6 max-h-80 flex justify-center overflow-hidden">
+                <div className="imageholder flex px-6 min-h-80 justify-center overflow-hidden">
                     {mainImg}
                 </div>
             

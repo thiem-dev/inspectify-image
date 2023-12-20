@@ -18,6 +18,7 @@ import HistoryBar from './components/HistoryBar'
 import PageLoading from './components/Loading/PageLoading'
 import ToastEvent from './components/ToastEvent';
 import NewUserHero from './components/NewUserHero'
+import ToastMe from './components/ToastMe'
 
 function App() {
   const [history, setHistory] = useState([])
@@ -58,11 +59,12 @@ function App() {
     const tfModelInit = () => {
       loadModel()
       setPageLoading(false)
-      setToastStatus('success'); setToastText('model rendered');
+      ToastMe.success('Model Loaded success!')
     }
 
-    tfModelInit()
-    getHistory();
+      tfModelInit()
+      getHistory();
+
     // setHistory(sampleData)
   }, [])
 
@@ -105,6 +107,7 @@ function App() {
           if(!res.ok){ throw new Error(`HTTP error! Status: ${res.status}`); }
           const data = await res.json();
           console.log(`POST success`, data)
+          ToastMe.success('Post to history success!')
           
           //set history and reset input values
           setHistory([imageObj, ...history])
@@ -115,9 +118,13 @@ function App() {
 
         } catch(error){
           console.log(`problem with posting to api history: ${imageObj}`)
+          ToastMe.fail('problem with posting to api history')
         } 
           
-      } else {console.log(`image needs to be identified`)}
+      } else {
+        console.log(`image needs to be identified`)
+        ToastMe.fail('image needs to be identified')
+      }
   }
 
   const identify = async () => {
@@ -137,7 +144,7 @@ function App() {
       setImageLoaded(true)
     } else {
       setImageLoaded(false)
-      setToastStatus('fail'); setToastText('image url is invalid')
+      ToastMe.fail('image url is invalid')
       console.log('image url is invalid')
     }
   }
@@ -166,7 +173,7 @@ function App() {
   return (
     <>
       <div id="main-body" className="container">
-        <ToastEvent toastStatus={toastStatus} toastText={toastText}/>
+      
         <div className="mainHolder container w-full h-full flex flex-row justify-evenly my-10 gap-4 overflow-hidden">
           <div className="w-7/12 h-5/6">
             <MainContent 
