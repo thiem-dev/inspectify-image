@@ -5,7 +5,6 @@ const NewUserHero = ({newUserHandler}) => {
     return (
         <>
         <div className="min-h-screen flex items-center justify-center relative bg-slate-900/70 overflow-hidden">
-            
             <div className="absolute right-[-800px] -z-10">
                 <img src={heroimg} alt="background image" className="" />
             </div>
@@ -19,7 +18,6 @@ const NewUserHero = ({newUserHandler}) => {
                     <li className="mb-5 flex items-center gap-x-3 p-2"><span><GiBulletBill/></span>Upload image via URL</li>
                     <li className="mb-5 flex items-center gap-x-3 p-2"><span><GiBulletBill/></span>Insert Classification for an Image</li>
                     <li className="mb-5 flex items-center gap-x-3 p-2"><span><GiBulletBill/></span>Caption and Save Image to history</li>
-                    
                 </ul>
                 <button className="btn btn-primary" onClick={newUserHandler}>Get Started</button>
             </div>
