@@ -8,8 +8,8 @@ const HistoryBar = ({ history, setImageURL, historyLoading }) => {
 
     const classText = (image) => {return (
             image.class_categories.map((cat,index) => (
-                <div key={`${cat.className}-${index}`} className="text-lg p-1">
-                    <p>{cat.className} {`${cat.probability*100}%`}</p>
+                <div key={`${cat.className}-${index}`} className="text-md">
+                    <p>{cat.className} {`${(cat.probability*100).toFixed(2)}%`}</p>
                 </div>
         )) 
     )}

@@ -4,8 +4,14 @@ const ClassResults = ({results}) => {
         //TODO results component
         const chance = item.probability * 100;
         return (
-            <div className='' key={`resCard-${item.className}`}>
-                <span>{item.className}</span><progress className="progress progress-primary w-56" value={chance} max="100"></progress>
+            <div className='display flex flex-row w-full ' key={`resCard-${item.className}`}>
+                <div className='w-4/12 text-right'>
+                    {item.className} 
+                </div>
+                <div className='w-8/12 self-start px-3'>
+                    <progress className="progress progress-primary w-full h-3" value={chance} max="100"></progress>
+                </div>
+                
             </div>
             )
         })
