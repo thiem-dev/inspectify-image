@@ -60,8 +60,6 @@ function App() {
 
   }, [imageURL])
 
-
-
 // ------------------------------------------------- UTIL FUNCTIONS
 
   const loadModel = async () => {
