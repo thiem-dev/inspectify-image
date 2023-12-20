@@ -4,7 +4,6 @@ import { GiBulletBill } from "react-icons/gi";
 const NewUserHero = ({newUserHandler}) => {
     return (
         <>
-        
         <div className="min-h-screen flex items-center justify-center relative bg-slate-900/70 overflow-hidden">
             
             <div className="absolute right-[-800px] -z-10">

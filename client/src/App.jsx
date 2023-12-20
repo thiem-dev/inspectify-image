@@ -15,24 +15,18 @@ function App() {
   const [historyLoading, setHistoryLoading] = useState(true)
   const [model, setModel] = useState(null)
   const [results, setResults] = useState([])
-  const [userCaption, setUserCaption] = useState('')
   const [imageURL, setImageURL] = useState(null)
   const [imageLoaded, setImageLoaded] = useState(false)
-  const [imageExists, setImageExists] = useState(true)
-  const [toastStatus, setToastStatus] = useState(true)
-  const [toastText, setToastText] = useState('default')
   const [isNewUser, setNewUser] = useState(true) 
 
   const imageRef = useRef()
   const urlInputRef = useRef()
   const userCaptionRef = useRef()
-
   const API_URL = `https://inspectify-image-server-dev.onrender.com`
 
 
+  //get all history, load tfjs model
   useEffect(() => {
-
-    //on load history fetch
     const getHistory = async () => {
       try {
         const res = await fetch(`${API_URL}/api/history`)
@@ -41,6 +35,7 @@ function App() {
         setHistoryLoading(false)
       } catch (error) {
         console.log('something went wrong with getting history api')
+        ToastMe.success('something went wrong with getting history api')
         setHistoryLoading(false)
       }
     }
@@ -117,14 +112,13 @@ function App() {
   }
 
   const identify = async () => {
-    // urlInputRef.current.value=''
     const results = await model.classify(imageRef.current)
     setResults(results)
+    ToastMe.success('Identify Sucess')
     console.log(results)
   }
 
 
-  //TODO this function doesn't wrk
   const handleImgLoad = (e) => {
     const isImgLoaded = e.target.naturalWidth > 0;
     console.log('is image loaded:', isImgLoaded)
@@ -156,7 +150,6 @@ function App() {
     return (<NewUserHero newUserHandler={newUserHandler}/>)
   }
    
-
   return (
     <>
       <div id="main-body" className="container">
@@ -166,8 +159,7 @@ function App() {
             <MainContent 
               imageURL={imageURL} imageRef={imageRef} results={results} 
               identify={identify} urlInputRef={urlInputRef} handleImgOnChange={handleImgOnChange} 
-              handleImgLoad={handleImgLoad} userCaptionRef={userCaptionRef} postImage={postImage}
-              setUserCaption={setUserCaption} imageLoaded={imageLoaded}
+              handleImgLoad={handleImgLoad} userCaptionRef={userCaptionRef} postImage={postImage} imageLoaded={imageLoaded}
             />
           </div>
           <div className="divider divider-horizontal py-20 divider-accent-content"><span className="[writing-mode:vertical-lr]">History</span></div> 

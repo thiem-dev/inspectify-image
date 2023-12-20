@@ -1,4 +1,4 @@
-const PageLoading = (props) => {
+const PageLoading = () => {
     return (
         <div className="loading-ctn container">
             <h1>Loading Content</h1>
