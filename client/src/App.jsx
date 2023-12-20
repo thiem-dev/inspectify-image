@@ -1,13 +1,3 @@
-/* TODO - 
-- show toast on img loads 
-- save img to history
-- render box around classification objects
-- separate classificiation div names from the progress bar so it doesn't jump around
-- add more toast types
-- separate main content load and history content loading states
-- put toastEvent component into a wrapper function + that return an element plus useffect? 
-*/
-
 import { useState, useEffect, useRef } from 'react'
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import * as tf from '@tensorflow/tfjs';
@@ -16,7 +6,6 @@ import './App.css'
 import MainContent from './components/MainContent'
 import HistoryBar from './components/HistoryBar'
 import PageLoading from './components/Loading/PageLoading'
-import ToastEvent from './components/ToastEvent';
 import NewUserHero from './components/NewUserHero'
 import ToastMe from './components/ToastMe'
 
@@ -154,7 +143,7 @@ function App() {
     setResults([])
   }
 
-  const newUserHandler = (e) => {
+  const newUserHandler = () => {
     setNewUser(false)
   }
 
@@ -168,8 +157,6 @@ function App() {
   }
    
 
-
-  //TODO styling the main layout
   return (
     <>
       <div id="main-body" className="container">
