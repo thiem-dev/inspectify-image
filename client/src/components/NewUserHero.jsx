@@ -13,11 +13,13 @@ const NewUserHero = ({newUserHandler}) => {
                     <h1 className="mb-5 text-8xl font-bold">
                         Welcome to <span className="text-primary">Inspectify</span>{" "}
                     </h1>
-                    <h2 className="text-5xl mb-5">App Features: </h2>
+                    <h2 className="text-5xl mb-5">Features: </h2>
                     <ul className='text-2xl w-full ml-4'>
-                        <li className="mb-5 flex items-center gap-x-3 p-2"><span><GiBulletBill/></span>Upload image via URL</li>
-                        <li className="mb-5 flex items-center gap-x-3 p-2"><span><GiBulletBill/></span>Insert Classification for an Image</li>
-                        <li className="mb-5 flex items-center gap-x-3 p-2"><span><GiBulletBill/></span>Caption and Save Image to history</li>
+                        <li className="mb-5 flex items-center gap-x-3 p-2"><span><GiBulletBill/></span>Upload Image via URL</li>
+                        <li className="mb-5 flex items-center gap-x-3 p-2"><span><GiBulletBill/></span>Use MobileNet to classify objects in an Image</li>
+                        <li className="mb-5 flex items-center gap-x-3 p-2"><span><GiBulletBill/></span>Caption and save image caption and classifications into a history</li>
+                        <li className="mb-5 flex items-center gap-x-3 p-2"><span><GiBulletBill/></span>Click on older history images and reclassify it</li>
+                        <li className="mb-5 flex items-center gap-x-3 p-2"><span><GiBulletBill/></span>Conditionally rendered form based on current form step (this was to prevent invalid user or submitting images with no classification or captions)</li>
                     </ul>
                     <button className="btn btn-primary" onClick={newUserHandler}>Get Started</button>
                 </div>
