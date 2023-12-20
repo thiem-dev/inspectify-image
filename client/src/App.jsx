@@ -18,7 +18,6 @@ function App() {
   const [imageURL, setImageURL] = useState(null)
   const [imageLoaded, setImageLoaded] = useState(false)
   const [isNewUser, setNewUser] = useState(true)
-  const []
 
   const imageRef = useRef()
   const urlInputRef = useRef()
