@@ -25,6 +25,15 @@ Overview - Inspectify is an image classifier that helps user detect objects insi
 - `npm install`
 - `npm run dev-server`
 
+<details>
+  <summary>Example Drop Down</summary>
+
+- `cd server`
+- `npm install`
+- `npm run dev-server`
+
+</details>
+
 ### Client Side
 - `cd client`
 - `npm install`
