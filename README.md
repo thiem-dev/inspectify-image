@@ -18,7 +18,6 @@ Overview - Inspectify is an image classifier that helps user detect objects insi
 - Conditionally rendered form based on user's current form step (this was to prevent invalid user or submitting images with no classification or captions)
 
 
-
 ## Libraries & Services 
 - DaisyUi + TailwindCSS: 
 - TensorFlowJS
@@ -32,6 +31,18 @@ Overview - Inspectify is an image classifier that helps user detect objects insi
         - (maybe switching to supabase in the future)
     - Render
     - Vercel
+
+
+## Deployment Notes 
+- Render Environment
+    - Webservice:
+        - Build Command: `npm install`
+        - Start Command: `npm start`
+- Vercel
+    - Static Site:
+        - Build Comand: `npm build` / `vite build`
+        - Output Dir: `dist`
+        - Install Command: `npm install`
 
 
 ## Local Test
@@ -80,14 +91,4 @@ Overview - Inspectify is an image classifier that helps user detect objects insi
 
 
 
-## Deployment Notes 
-- Render Environment
-    - Webservice:
-        - Build Command: `npm install`
-        - Start Command: `npm start`
-- Vercel
-    - Static Site:
-        - Build Comand: `npm build` / `vite build`
-        - Output Dir: `dist`
-        - Install Command: `npm install`
 
