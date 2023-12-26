@@ -1,6 +1,8 @@
 #personal
 .env
 .vscode
+./.env
+*.env
 
 # Logs
 logs
