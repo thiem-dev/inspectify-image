@@ -20,6 +20,7 @@ Link to App: https://inspectify-image-client.vercel.app/
 - Conditionally rendered form based on user's current form step (this was to prevent invalid user or submitting images with no classification or captions)
 
 
+
 ## Tech Used
 
 ### Libraries:
@@ -92,11 +93,4 @@ Link to App: https://inspectify-image-client.vercel.app/
 
 <h3>MobileNet Convolutional Neural Network Diagram</h3>
 <img src="https://github.com/thiem-dev/inspectify-image/blob/dev/readMeAssets/MobileNet-basicCNN.jpg" alt="MobileNet CNN Diagram" width="400" height="300">
-
-
-
-
-
-
-
 
