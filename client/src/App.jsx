@@ -22,7 +22,8 @@ function App() {
   const imageRef = useRef()
   const urlInputRef = useRef()
   const userCaptionRef = useRef()
-  const API_URL = `https://inspectify-image-server-dev.onrender.com`
+  // const API_URL = `https://inspectify-image-server-dev.onrender.com`
+  const API_URL = `https://inspectify-next.vercel.app`
 
 
   //get all history, load tfjs model
